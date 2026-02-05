@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Jayliez ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      background: linear-gradient(120deg, #ffdde1, #ee9ca7, #ffb7b2);
+      overflow: hidden;
+      color: white;
+    }
+
+    .bg-hearts span {
+      position: absolute;
+      bottom: -50px;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 0, 100, 0.25);
+      animation: float 12s linear infinite;
+      border-radius: 50%;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(-110vh) scale(1.6); opacity: 0; }
+    }
+
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+      padding: 40px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -40%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      text-align: center;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+      border: none;
+      padding: 14px 30px;
+      color: white;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin: 5px;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(255,75,43,0.6);
+    }
+
+    .hidden { display: none; }
+
+    .photo-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 10px;
+    }
+
+    .photo-gallery img {
+      width: 45%;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+
+    .photo-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .question h1 {
+      font-size: 2rem;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px rgba(255,100,150,0.4); }
+      to { text-shadow: 0 0 25px rgba(255,100,150,0.9); }
+    }
+
+    @media(max-width: 500px) {
+      .photo-gallery img { width: 90%; }
+      h1 { font-size: 1.8rem; }
+      p { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-hearts"></div>
+
+  <div class="center" id="lock">
+    <h1>🔐 A Little Secret for Jayliez</h1>
+    <p>Enter the date that changed everything</p>
+    <input type="text" id="code" placeholder="MM/DD/YYYY" />
+    <button onclick="unlock()">Unlock</button>
+  </div>
+
+  <div class="center hidden question" id="question">
+    <h1>Will you be my Valentine, Jayliez? 💖</h1>
+    <div>
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
+    </div>
+  </div>
+
+  <div class="center hidden" id="main">
+    <h1>💖 I’m so happy, Jayliez! 💖</h1>
+    <p>can't wait to see you on that day baby...</p>
+    <div class="photo-gallery">
+      <img src="photo1.jpg" alt="Memory 1" />
+      <img src="photo2.jpg" alt="Memory 2" />
+      <img src="photo3.jpg" alt="Memory 3" />
+    </div>
+  </div>
+
+  <audio id="song" loop>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const bg = document.querySelector('.bg-hearts');
+    for (let i = 0; i < 25; i++) {
+      const span = document.createElement('span');
+      span.style.left = Math.random() * 100 + '%';
+      span.style.animationDuration = (8 + Math.random() * 8) + 's';
+      span.style.width = span.style.height = (10 + Math.random() * 20) + 'px';
+      bg.appendChild(span);
+    }
+
+    function unlock() {
+      const input = document.getElementById('code').value.trim();
+      if (input === '01/19/2026') {
+        document.getElementById('lock').classList.add('hidden');
+        document.getElementById('question').classList.remove('hidden');
+      } else {
+        alert('Not quite… try again ❤️');
+      }
+    }
+
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const question = document.getElementById('question');
+    const main = document.getElementById('main');
+    const song = document.getElementById('song');
+
+    // Trick No button
+    noBtn.addEventListener('mouseenter', () => {
+      const x = Math.random() * 60;
+      const y = Math.random() * 60;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    yesBtn.addEventListener('click', () => {
+      question.classList.add('hidden');
+      main.classList.remove('hidden');
+      song.play();
+    });
+  </script>
+
+</body>
+</html>
